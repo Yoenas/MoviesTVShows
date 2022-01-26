@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Movie &amp; TV Show</string>
+    <string name="txt_movies">Movies</string>
+    <string name="txt_tv_shows">TV Shows</string>
+    <string name="txt_rating">Rating</string>
+    <string name="txt_overview">Overview</string>
+    <string name="txt_detail">Detail</string>
+
+    <string name="content_image_poster_film">Image Poster Film</string>
+    <string name="content_image_detail_banner">Image Detail Banner</string>
+    <string name="content_image_detail_poster">Image Detail Poster</string>
+    <string name="content_image_splash_screen">Image Splash Screen</string>
+</resources>
