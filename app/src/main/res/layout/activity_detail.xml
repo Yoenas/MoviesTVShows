@@ -33,17 +33,16 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/content_image_detail_banner"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     app:layout_collapseMode="parallax" />
 
                 <ImageView
                     android:id="@+id/img_poster_detail"
                     android:layout_width="120dp"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="16dp"
                     android:contentDescription="@string/content_image_detail_poster"
-                    android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -85,19 +84,18 @@
 
             <TextView
                 android:id="@+id/tv_rating"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/txt_rating"
                 android:textColor="@color/black"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_released_detail"
-                app:layout_constraintEnd_toEndOf="@id/tv_rating_detail"
-                app:layout_constraintStart_toStartOf="@id/tv_rating_detail" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_rating_detail"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -105,6 +103,13 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_duration_detail"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_rating" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="tv_rating, tv_rating_detail" />
 
             <TextView
                 android:id="@+id/tv_released_detail"
@@ -114,7 +119,7 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/tv_rating_detail"
+                app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_detail" />
 
             <TextView
@@ -135,7 +140,7 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/tv_rating_detail"
+                app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toBottomOf="@id/tv_released_detail" />
 
             <TextView

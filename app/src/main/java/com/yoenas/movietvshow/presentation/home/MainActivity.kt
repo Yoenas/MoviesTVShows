@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yoenas.movietvshow.R
 import com.yoenas.movietvshow.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null

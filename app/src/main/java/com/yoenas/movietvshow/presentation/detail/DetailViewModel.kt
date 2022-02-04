@@ -1,43 +1,37 @@
 package com.yoenas.movietvshow.presentation.detail
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yoenas.movietvshow.data.local.DataDummy
-import com.yoenas.movietvshow.data.MovieTvShow
+import androidx.lifecycle.viewModelScope
+import com.yoenas.movietvshow.data.model.MoviesItem
+import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.data.repository.DetailRepository
+import com.yoenas.movietvshow.utils.EspressoIdlingResource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailViewModel : ViewModel() {
+@HiltViewModel
+class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) :
+    ViewModel() {
 
-    private lateinit var movieId: String
-    private lateinit var tvShowId: String
+    private var _movie = MutableLiveData<MoviesItem>()
+    val movie: LiveData<MoviesItem> = _movie
 
-    fun setMovieId(movieId: String){
-        this.movieId = movieId
+    private var _tvShow = MutableLiveData<TvShowsItem>()
+    val tvShow: LiveData<TvShowsItem> = _tvShow
+
+    fun getDetailMovie(id: Int) = viewModelScope.launch {
+        EspressoIdlingResource.increment()
+        _movie.postValue(detailRepository.getDetailMovie(id))
+        EspressoIdlingResource.decrement()
     }
 
-    fun setTvShowId(tvShowId: String){
-        this.tvShowId = tvShowId
+    fun getDetailTvShow(id: Int) = viewModelScope.launch {
+        EspressoIdlingResource.increment()
+        _tvShow.postValue(detailRepository.getDetailTvShow(id))
+        EspressoIdlingResource.decrement()
     }
 
-    fun getDetailMovieById() : MovieTvShow {
-        lateinit var movies: MovieTvShow
-        val listMovies = DataDummy.generateDataMoviesDummy()
-        for (data in listMovies) {
-            if (data.id == movieId) {
-                movies = data
-                break
-            }
-        }
-        return movies
-    }
-
-    fun getDetailTvShowById() : MovieTvShow {
-        lateinit var tvShows: MovieTvShow
-        val listTvShows = DataDummy.generateDataTvShowsDummy()
-        for (data in listTvShows) {
-            if (data.id == tvShowId) {
-                tvShows = data
-                break
-            }
-        }
-        return tvShows
-    }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yoenas.movietvshow">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,6 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_movie_tv_show_round"
         android:supportsRtl="true"
+        android:name=".ApplicationModule"
         android:theme="@style/Theme.MovieTVShow"
         tools:ignore="AllowBackup">
         <activity
