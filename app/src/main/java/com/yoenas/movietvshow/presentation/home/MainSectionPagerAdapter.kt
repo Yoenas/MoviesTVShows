@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.yoenas.movietvshow.presentation.home.movie.MovieFragment
 import com.yoenas.movietvshow.presentation.home.tv.TvShowFragment
 
-class MainSectionPagerAdapter (fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class MainSectionPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun getItemCount() = 2
 
     override fun createFragment(position: Int): Fragment {

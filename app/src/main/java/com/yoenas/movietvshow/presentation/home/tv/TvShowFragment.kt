@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.databinding.FragmentTvShowBinding
-import com.yoenas.movietvshow.presentation.home.HomeViewModel
 import com.yoenas.movietvshow.presentation.detail.DetailActivity
+import com.yoenas.movietvshow.presentation.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,8 +39,7 @@ class TvShowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.getListTvShow()
-        homeViewModel.tvShows.observe(viewLifecycleOwner, {
+        homeViewModel.getListTvShow().observe(viewLifecycleOwner, {
             tvAdapter.setData(it)
             Log.i("GetListTvShows", "onViewCreated: $it")
             binding.rvTvShows.apply {
@@ -49,11 +48,16 @@ class TvShowFragment : Fragment() {
             }
         })
 
-        tvAdapter.listener = { _: View, item: TvShowsItem, _: Int ->
+        tvAdapter.listener = { _: View, item: MovieTvShow, _: Int ->
             val intent = Intent(activity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, item.id)
             intent.putExtra(DetailActivity.EXTRA_TYPE, DetailActivity.TYPE_TV)
             startActivity(intent)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

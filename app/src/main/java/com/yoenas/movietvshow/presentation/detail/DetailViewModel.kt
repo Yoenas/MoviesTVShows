@@ -1,37 +1,16 @@
 package com.yoenas.movietvshow.presentation.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
-import com.yoenas.movietvshow.data.repository.DetailRepository
-import com.yoenas.movietvshow.utils.EspressoIdlingResource
+import com.yoenas.movietvshow.data.model.MovieTvShow
+import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(private val detailRepository: DetailRepository) :
+class DetailViewModel @Inject constructor(private val movieTvShowRepository: MovieTvShowRepository) :
     ViewModel() {
 
-    private var _movie = MutableLiveData<MoviesItem>()
-    val movie: LiveData<MoviesItem> = _movie
-
-    private var _tvShow = MutableLiveData<TvShowsItem>()
-    val tvShow: LiveData<TvShowsItem> = _tvShow
-
-    fun getDetailMovie(id: Int) = viewModelScope.launch {
-        EspressoIdlingResource.increment()
-        _movie.postValue(detailRepository.getDetailMovie(id))
-        EspressoIdlingResource.decrement()
-    }
-
-    fun getDetailTvShow(id: Int) = viewModelScope.launch {
-        EspressoIdlingResource.increment()
-        _tvShow.postValue(detailRepository.getDetailTvShow(id))
-        EspressoIdlingResource.decrement()
-    }
-
+    fun getDetailMovie(id: Int): LiveData<MovieTvShow> = movieTvShowRepository.getDetailMovie(id)
+    fun getDetailTvShow(id: Int): LiveData<MovieTvShow> = movieTvShowRepository.getDetailTvShow(id)
 }

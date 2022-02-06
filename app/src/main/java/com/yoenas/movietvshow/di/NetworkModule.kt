@@ -1,7 +1,7 @@
 package com.yoenas.movietvshow.di
 
-import com.yoenas.movietvshow.data.network.ApiConfig
-import com.yoenas.movietvshow.data.network.ApiService
+import com.yoenas.movietvshow.network.ApiConfig
+import com.yoenas.movietvshow.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,8 +12,12 @@ import dagger.hilt.components.SingletonComponent
 object NetworkModule {
 
     @Provides
+    fun provideNetworkClient(): ApiConfig {
+        return ApiConfig
+    }
+
+    @Provides
     fun provideNetworkService(): ApiService {
         return ApiConfig.getApiService()
     }
-
 }

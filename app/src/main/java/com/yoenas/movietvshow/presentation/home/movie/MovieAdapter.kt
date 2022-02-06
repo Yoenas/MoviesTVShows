@@ -3,12 +3,12 @@ package com.yoenas.movietvshow.presentation.home.movie
 import com.bumptech.glide.Glide
 import com.yoenas.movietvshow.BuildConfig
 import com.yoenas.movietvshow.R
-import com.yoenas.movietvshow.data.model.MoviesItem
+import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.presentation.home.BaseAdapter
 
-class MovieAdapter : BaseAdapter<MoviesItem>() {
+class MovieAdapter : BaseAdapter<MovieTvShow>() {
 
-    fun setData(data: List<MoviesItem>?) {
+    fun setData(data: List<MovieTvShow>?) {
         if (data == null) return
         items.clear()
         items.addAll(data)

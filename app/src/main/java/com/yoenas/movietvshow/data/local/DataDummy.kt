@@ -1,13 +1,16 @@
 package com.yoenas.movietvshow.data.local
 
-import com.yoenas.movietvshow.data.model.*
+import com.yoenas.movietvshow.data.model.GenresItem
+import com.yoenas.movietvshow.data.model.MovieTvShow
+import com.yoenas.movietvshow.data.model.MoviesItem
+import com.yoenas.movietvshow.data.model.TvShowsItem
 
 object DataDummy {
-    fun generateDataMoviesDummy() : ArrayList<MoviesItem> {
-        val listMovies = ArrayList<MoviesItem>()
+    fun generateDataMoviesDummy(): List<MovieTvShow> {
+        val listMovies = ArrayList<MovieTvShow>()
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 1,
                 "Spider-Man: No Way Home",
                 "2021",
@@ -25,7 +28,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 2,
                 "Encanto",
                 "2021",
@@ -44,7 +47,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 3,
                 "Resident Evil: Welcome to Raccoon City",
                 "2021",
@@ -63,7 +66,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 4,
                 "The Matrix Resurrections",
                 "2021",
@@ -80,7 +83,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 5,
                 "Venom: Let There Be Carnage",
                 "2021",
@@ -98,7 +101,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 6,
                 "Shang-Chi and the Legend of the Ten Rings",
                 "2021",
@@ -116,7 +119,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 7,
                 "Don't Look Up",
                 "2021",
@@ -134,7 +137,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 8,
                 "Sing 2",
                 "2021",
@@ -153,7 +156,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 9,
                 "Clifford the Big Red Dog",
                 "2021",
@@ -171,7 +174,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 10,
                 "Eternals",
                 "2021",
@@ -189,7 +192,7 @@ object DataDummy {
             )
         )
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 11,
                 "Spider-Man: No Way Home",
                 "2021",
@@ -207,7 +210,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 12,
                 "Encanto",
                 "2021",
@@ -226,7 +229,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 13,
                 "Resident Evil: Welcome to Raccoon City",
                 "2021",
@@ -245,7 +248,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 14,
                 "The Matrix Resurrections",
                 "2021",
@@ -262,7 +265,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 15,
                 "Venom: Let There Be Carnage",
                 "2021",
@@ -280,7 +283,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 16,
                 "Shang-Chi and the Legend of the Ten Rings",
                 "2021",
@@ -298,7 +301,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 17,
                 "Don't Look Up",
                 "2021",
@@ -316,7 +319,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 18,
                 "Sing 2",
                 "2021",
@@ -335,7 +338,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 19,
                 "Clifford the Big Red Dog",
                 "2021",
@@ -353,7 +356,7 @@ object DataDummy {
         )
 
         listMovies.add(
-            MoviesItem(
+            MovieTvShow(
                 20,
                 "Eternals",
                 "2021",
@@ -373,18 +376,18 @@ object DataDummy {
         return listMovies
     }
 
-    fun generateDataTvShowsDummy() : ArrayList<TvShowsItem> {
-        val listTvShows = ArrayList<TvShowsItem>()
+    fun generateDataTvShowsDummy(): List<MovieTvShow> {
+        val listTvShows = ArrayList<MovieTvShow>()
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 1,
                 "The D'Amelio Show",
                 "2021",
                 arrayListOf(
                     GenresItem("Reality")
                 ),
-                listOf(32),
+                32,
                 9.4,
                 "From relative obscurity and a seemingly normal life, to overnight success and thrust into the Hollywood limelight overnight, the D’Amelios are faced with new challenges and opportunities they could not have imagined.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/z0iCS5Znx7TeRwlYSd4c01Z0lFx.jpg",
@@ -393,7 +396,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 2,
                 "I Am Not an Animal",
                 "2004",
@@ -401,7 +404,7 @@ object DataDummy {
                     GenresItem("Animatino"),
                     GenresItem("Comedy")
                 ),
-                listOf(30),
+                30,
                 9.2,
                 "I Am Not An Animal is an animated comedy series about the only six talking animals in the world, whose cosseted existence in a vivisection unit is turned upside down when they are liberated by animal rights activists.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qG59J1Q7rpBc1dvku4azbzcqo8h.jpg",
@@ -410,7 +413,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 3,
                 "Arcane",
                 "2021",
@@ -420,7 +423,7 @@ object DataDummy {
                     GenresItem("Action & Adventure"),
                     GenresItem("Drama"),
                 ),
-                listOf(42),
+                42,
                 9.1,
                 "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
@@ -429,14 +432,14 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 4,
                 "BTS In the SOOP",
                 "2020",
                 arrayListOf(
                     GenresItem("Reality")
                 ),
-                listOf(80),
+                80,
                 9.0,
                 "'In the SOOP BTS ver.' is a reality show, portraying BTS members' everyday life, relaxation, and everything in between, away from the city life. A time of freedom and healing in a place for BTS, and BTS only.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eBsIEKqLMtktw2jpFPa9WTuGyPN.jpg",
@@ -445,7 +448,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 5,
                 "SK8 the Infinity",
                 "2021",
@@ -453,7 +456,7 @@ object DataDummy {
                     GenresItem("Animation"),
                     GenresItem("Action & Adventure")
                 ),
-                listOf(24),
+                24,
                 9.0,
                 "\"S\" is a dangerous, top secret, no-holds-barred downhill skateboarding race down an abandoned mine. When avid skateboarder Reki takes Langa to the mountain where \"S\" is held, Langa, who's never been on a skateboard in his life, finds himself sucked into the world of \"S\", and…?!",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ksb6QlSCsRLr3MNmxc8ojOOLK6V.jpg",
@@ -462,7 +465,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 6,
                 "Given",
                 "2019",
@@ -470,7 +473,7 @@ object DataDummy {
                     GenresItem("Animatino"),
                     GenresItem("Drama")
                 ),
-                listOf(23),
+                23,
                 9.0,
                 "Tightly clutching his Gibson guitar, Mafuyu Satou steps out of his dark apartment to begin another day of his high school life. While taking a nap in a quiet spot on the gymnasium staircase, he has a chance encounter with fellow student Ritsuka Uenoyama, who berates him for letting his guitar's strings rust and break. Noticing Uenoyama's knowledge of the instrument, Satou pleads for him to fix it and to teach him how to play. Uenoyama eventually agrees and invites him to sit in on a jam session with his two band mates: bassist Haruki Nakayama and drummer Akihiko Kaji.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pdDCcAq8RNSZNk81PXYoHNUPHjn.jpg",
@@ -479,7 +482,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 7,
                 "The Rising of the Shield Hero",
                 "2019",
@@ -489,7 +492,7 @@ object DataDummy {
                     GenresItem("Sci-Fi & Fantasy"),
                     GenresItem("Drama"),
                 ),
-                listOf(24),
+                24,
                 9.0,
                 "Iwatani Naofumi was summoned into a parallel world along with 3 other people to become the world's Heroes. Each of the heroes respectively equipped with their own legendary equipment when summoned, Naofumi received the Legendary Shield as his weapon. Due to Naofumi's lack of charisma and experience he's labeled as the weakest, only to end up betrayed, falsely accused, and robbed by on the third day of adventure. Shunned by everyone from the king to peasants, Naofumi's thoughts were filled with nothing but vengeance and hatred. Thus, his destiny in a parallel World begins...",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6cXf5EDwVhsRv8GlBzUTVnWuk8Z.jpg",
@@ -498,7 +501,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 8,
                 "The Promised Neverland",
                 "2019",
@@ -509,7 +512,7 @@ object DataDummy {
                     GenresItem("Action & Adventure"),
                     GenresItem("Drama")
                 ),
-                listOf(23),
+                23,
                 8.9,
                 "Surrounded by a forest and a gated entrance, the Grace Field House is inhabited by orphans happily living together as one big family, looked after by their \"Mama,\" Isabella. Although they are required to take tests daily, the children are free to spend their time as they see fit, usually playing outside, as long as they do not venture too far from the orphanage — a rule they are expected to follow no matter what. However, all good times must come to an end, as every few months, a child is adopted and sent to live with their new family... never to be heard from again.\n" +
                         "\n" +
@@ -520,7 +523,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 9,
                 "Banana Fish",
                 "2018",
@@ -530,7 +533,7 @@ object DataDummy {
                     GenresItem("Mystery"),
                     GenresItem("Animation"),
                 ),
-                listOf(23),
+                23,
                 8.9,
                 "Nature made Ash Lynx beautiful; nurture made him a cold ruthless killer. A runaway brought up as the adopted heir and sex toy of \"Papa\" Dino Golzine, Ash, now at the rebellious age of seventeen, forsakes the kingdom held out by the devil who raised him. But the hideous secret that drove Ash's older brother mad in Vietnam has suddenly fallen into Papa's insatiably ambitious hands—and it's exactly the wrong time for Eiji Okamura, a pure-hearted young photographer from Japan, to make Ash Lynx's acquaintance...",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1UV5di9UIXwrpCW3xQ4RNli5hEV.jpg",
@@ -539,7 +542,7 @@ object DataDummy {
         )
 
         listTvShows.add(
-            TvShowsItem(
+            MovieTvShow(
                 10,
                 "Maid Sama!",
                 "2010",
@@ -548,7 +551,187 @@ object DataDummy {
                     GenresItem("Comedy"),
                     GenresItem("Drama")
                 ),
-                listOf(25),
+                25,
+                8.9,
+                "Misaki Ayuzawa is the first female student council president at a once all-boys school turned co-ed. She rules the school with strict discipline demeanor. But she has a secret—she works at a maid cafe due to her families circumstances. One day the popular A-student and notorious heart breaker Takumi Usui finds out her secret and makes a deal with her to keep it hush from the school in exchange for spending some time with him.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/igkn0M1bgMeATz59LShvVxZNdVd.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/igkn0M1bgMeATz59LShvVxZNdVd.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                11,
+                "The D'Amelio Show",
+                "2021",
+                arrayListOf(
+                    GenresItem("Reality")
+                ),
+                32,
+                9.4,
+                "From relative obscurity and a seemingly normal life, to overnight success and thrust into the Hollywood limelight overnight, the D’Amelios are faced with new challenges and opportunities they could not have imagined.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/z0iCS5Znx7TeRwlYSd4c01Z0lFx.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/z0iCS5Znx7TeRwlYSd4c01Z0lFx.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                12,
+                "I Am Not an Animal",
+                "2004",
+                arrayListOf(
+                    GenresItem("Animatino"),
+                    GenresItem("Comedy")
+                ),
+                30,
+                9.2,
+                "I Am Not An Animal is an animated comedy series about the only six talking animals in the world, whose cosseted existence in a vivisection unit is turned upside down when they are liberated by animal rights activists.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qG59J1Q7rpBc1dvku4azbzcqo8h.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qG59J1Q7rpBc1dvku4azbzcqo8h.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                13,
+                "Arcane",
+                "2021",
+                arrayListOf(
+                    GenresItem("Animation"),
+                    GenresItem("Sci-Fi & Fantasy"),
+                    GenresItem("Action & Adventure"),
+                    GenresItem("Drama"),
+                ),
+                42,
+                9.1,
+                "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                14,
+                "BTS In the SOOP",
+                "2020",
+                arrayListOf(
+                    GenresItem("Reality")
+                ),
+                80,
+                9.0,
+                "'In the SOOP BTS ver.' is a reality show, portraying BTS members' everyday life, relaxation, and everything in between, away from the city life. A time of freedom and healing in a place for BTS, and BTS only.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eBsIEKqLMtktw2jpFPa9WTuGyPN.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eBsIEKqLMtktw2jpFPa9WTuGyPN.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                15,
+                "SK8 the Infinity",
+                "2021",
+                arrayListOf(
+                    GenresItem("Animation"),
+                    GenresItem("Action & Adventure")
+                ),
+                24,
+                9.0,
+                "\"S\" is a dangerous, top secret, no-holds-barred downhill skateboarding race down an abandoned mine. When avid skateboarder Reki takes Langa to the mountain where \"S\" is held, Langa, who's never been on a skateboard in his life, finds himself sucked into the world of \"S\", and…?!",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ksb6QlSCsRLr3MNmxc8ojOOLK6V.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ksb6QlSCsRLr3MNmxc8ojOOLK6V.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                16,
+                "Given",
+                "2019",
+                arrayListOf(
+                    GenresItem("Animatino"),
+                    GenresItem("Drama")
+                ),
+                23,
+                9.0,
+                "Tightly clutching his Gibson guitar, Mafuyu Satou steps out of his dark apartment to begin another day of his high school life. While taking a nap in a quiet spot on the gymnasium staircase, he has a chance encounter with fellow student Ritsuka Uenoyama, who berates him for letting his guitar's strings rust and break. Noticing Uenoyama's knowledge of the instrument, Satou pleads for him to fix it and to teach him how to play. Uenoyama eventually agrees and invites him to sit in on a jam session with his two band mates: bassist Haruki Nakayama and drummer Akihiko Kaji.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pdDCcAq8RNSZNk81PXYoHNUPHjn.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pdDCcAq8RNSZNk81PXYoHNUPHjn.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                17,
+                "The Rising of the Shield Hero",
+                "2019",
+                arrayListOf(
+                    GenresItem("Animation"),
+                    GenresItem("Action & Adventure"),
+                    GenresItem("Sci-Fi & Fantasy"),
+                    GenresItem("Drama"),
+                ),
+                24,
+                9.0,
+                "Iwatani Naofumi was summoned into a parallel world along with 3 other people to become the world's Heroes. Each of the heroes respectively equipped with their own legendary equipment when summoned, Naofumi received the Legendary Shield as his weapon. Due to Naofumi's lack of charisma and experience he's labeled as the weakest, only to end up betrayed, falsely accused, and robbed by on the third day of adventure. Shunned by everyone from the king to peasants, Naofumi's thoughts were filled with nothing but vengeance and hatred. Thus, his destiny in a parallel World begins...",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6cXf5EDwVhsRv8GlBzUTVnWuk8Z.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6cXf5EDwVhsRv8GlBzUTVnWuk8Z.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                18,
+                "The Promised Neverland",
+                "2019",
+                arrayListOf(
+                    GenresItem("Animation"),
+                    GenresItem("Mystery"),
+                    GenresItem("Sci-Fi & Fantasy"),
+                    GenresItem("Action & Adventure"),
+                    GenresItem("Drama")
+                ),
+                23,
+                8.9,
+                "Surrounded by a forest and a gated entrance, the Grace Field House is inhabited by orphans happily living together as one big family, looked after by their \"Mama,\" Isabella. Although they are required to take tests daily, the children are free to spend their time as they see fit, usually playing outside, as long as they do not venture too far from the orphanage — a rule they are expected to follow no matter what. However, all good times must come to an end, as every few months, a child is adopted and sent to live with their new family... never to be heard from again.\n" +
+                        "\n" +
+                        "However, the three oldest siblings have their suspicions about what is actually happening at the orphanage, and they are about to discover the cruel fate that awaits the children living at Grace Field, including the twisted nature of their beloved Mama.",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oBgRCpAbtMpk1v8wfdsIph7lPQE.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oBgRCpAbtMpk1v8wfdsIph7lPQE.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                19,
+                "Banana Fish",
+                "2018",
+                arrayListOf(
+                    GenresItem("Action & Adventure"),
+                    GenresItem("Drama"),
+                    GenresItem("Mystery"),
+                    GenresItem("Animation"),
+                ),
+                23,
+                8.9,
+                "Nature made Ash Lynx beautiful; nurture made him a cold ruthless killer. A runaway brought up as the adopted heir and sex toy of \"Papa\" Dino Golzine, Ash, now at the rebellious age of seventeen, forsakes the kingdom held out by the devil who raised him. But the hideous secret that drove Ash's older brother mad in Vietnam has suddenly fallen into Papa's insatiably ambitious hands—and it's exactly the wrong time for Eiji Okamura, a pure-hearted young photographer from Japan, to make Ash Lynx's acquaintance...",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1UV5di9UIXwrpCW3xQ4RNli5hEV.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1UV5di9UIXwrpCW3xQ4RNli5hEV.jpg"
+            )
+        )
+
+        listTvShows.add(
+            MovieTvShow(
+                20,
+                "Maid Sama!",
+                "2010",
+                arrayListOf(
+                    GenresItem("Animation"),
+                    GenresItem("Comedy"),
+                    GenresItem("Drama")
+                ),
+                25,
                 8.9,
                 "Misaki Ayuzawa is the first female student council president at a once all-boys school turned co-ed. She rules the school with strict discipline demeanor. But she has a secret—she works at a maid cafe due to her families circumstances. One day the popular A-student and notorious heart breaker Takumi Usui finds out her secret and makes a deal with her to keep it hush from the school in exchange for spending some time with him.",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/igkn0M1bgMeATz59LShvVxZNdVd.jpg",
@@ -559,7 +742,7 @@ object DataDummy {
         return listTvShows
     }
 
-    fun generateRemoteDataMoviesDummy() : ArrayList<MoviesItem> {
+    fun generateRemoteDataMoviesDummy(): List<MoviesItem> {
         val listMovies = ArrayList<MoviesItem>()
 
         listMovies.add(
@@ -582,7 +765,7 @@ object DataDummy {
         return listMovies
     }
 
-    fun generateRemoteDataTvShowsDummy() : List<TvShowsItem> {
+    fun generateRemoteDataTvShowsDummy(): List<TvShowsItem> {
         val listTvShows = ArrayList<TvShowsItem>()
 
         listTvShows.add(

@@ -3,17 +3,12 @@ package com.yoenas.movietvshow.presentation.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.yoenas.movietvshow.data.local.DataDummy
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
-import com.yoenas.movietvshow.data.repository.HomeRepository
-import com.yoenas.movietvshow.data.repository.MyDataSource
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
+import com.yoenas.movietvshow.data.model.MovieTvShow
+import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -21,64 +16,50 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
-@ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest {
 
-    private val mainThreadSurrogate = newSingleThreadContext("UI thread")
-
-    @Mock
-    private lateinit var remote: MyDataSource
-
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
-    private lateinit var observerMovies: Observer<List<MoviesItem>>
-
-    @Mock
-    private lateinit var observerTvShows: Observer<List<TvShowsItem>>
-
-    private val homeRepository: HomeRepository = mock()
     private lateinit var viewModel: HomeViewModel
+
+    @Mock
+    private lateinit var movieTvShowRepository: MovieTvShowRepository
+
+    @Mock
+    private lateinit var observerMovies: Observer<List<MovieTvShow>>
+
+    @Mock
+    private lateinit var observerTvShows: Observer<List<MovieTvShow>>
 
     @Before
     fun setup() {
-        Dispatchers.setMain(mainThreadSurrogate)
-        remote = Mockito.mock(remote.javaClass)
-        viewModel = HomeViewModel(homeRepository)
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
-        mainThreadSurrogate.close()
+        viewModel = HomeViewModel(movieTvShowRepository)
     }
 
     @ExperimentalCoroutinesApi
     @Test
     fun testGetListMovie() = runBlocking {
         val dummyMovie = DataDummy.generateDataMoviesDummy()
-        val movies = MutableLiveData<List<MoviesItem>>()
+        val movies = MutableLiveData<List<MovieTvShow>>()
         movies.value = dummyMovie
 
-        `when`(homeRepository.getNowPlayingMovies()).thenReturn(dummyMovie)
-        homeRepository.getNowPlayingMovies()
+        `when`(movieTvShowRepository.getNowPlayingMovies()).thenReturn(movies)
 
-        val data = viewModel.movies.value
-        verify(homeRepository).getNowPlayingMovies()
+        val data = viewModel.getListMovie().value
+        verify(movieTvShowRepository).getNowPlayingMovies()
 
         assertNotNull(data)
         data?.let {
-            assertEquals(1, data.size)
+            assertEquals(20, data.size)
         }
 
-        viewModel.movies.observeForever(observerMovies)
+        viewModel.getListMovie().observeForever(observerMovies)
         verify(observerMovies).onChanged(dummyMovie)
     }
 
@@ -86,21 +67,20 @@ class HomeViewModelTest {
     @Test
     fun testGetListTvShow() = runBlocking {
         val dummyTvShow = DataDummy.generateDataTvShowsDummy()
-        val tvShows = MutableLiveData<List<TvShowsItem>>()
+        val tvShows = MutableLiveData<List<MovieTvShow>>()
         tvShows.value = dummyTvShow
 
-        `when`(homeRepository.getTopRatedTvShows()).thenReturn(dummyTvShow)
-        viewModel.getListTvShow()
+        `when`(movieTvShowRepository.getTopRatedTvShows()).thenReturn(tvShows)
 
-        val data = viewModel.tvShows.value
-        verify(homeRepository).getTopRatedTvShows()
+        val data = viewModel.getListTvShow().value
+        verify(movieTvShowRepository).getTopRatedTvShows()
 
         assertNotNull(data)
         data?.let {
-            assertEquals(1, data.size)
+            assertEquals(20, data.size)
         }
 
-        viewModel.tvShows.observeForever(observerTvShows)
+        viewModel.getListTvShow().observeForever(observerTvShows)
         verify(observerTvShows).onChanged(dummyTvShow)
     }
 }

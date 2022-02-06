@@ -1,17 +1,14 @@
 package com.yoenas.movietvshow.presentation.detail
 
-import com.yoenas.movietvshow.BuildConfig.IMAGE_BASE_URL
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.BuildConfig.IMAGE_BASE_URL
+import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.databinding.ActivityDetailBinding
+import com.yoenas.movietvshow.utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,43 +38,41 @@ class DetailActivity : AppCompatActivity() {
         viewModel.apply {
             when (type) {
                 TYPE_MOVIE -> {
-                    getDetailMovie(id)
-                    movie.observe(this@DetailActivity) {
-                        showDetailMovieTvShow(it, null)
+                    getDetailMovie(id).observe(this@DetailActivity) {
+                        showDetailMovieTvShow(it)
                     }
                 }
 
                 TYPE_TV -> {
-                    getDetailTvShow(id)
-                    tvShow.observe(this@DetailActivity) {
-                        showDetailMovieTvShow(null, it)
+                    getDetailTvShow(id).observe(this@DetailActivity) {
+                        showDetailMovieTvShow(it)
                     }
                 }
             }
         }
     }
 
-    private fun showDetailMovieTvShow(movie: MoviesItem?, tvShow: TvShowsItem?) {
+    private fun showDetailMovieTvShow(data: MovieTvShow?) {
         binding.apply {
-            if (movie != null && tvShow == null) {
-                tvTitleDetail.text = movie.title
-                tvReleasedDetail.text = movie.releaseDate
-                imgDetail.loadImage(IMAGE_BASE_URL+movie.backdropPath)
-                imgPosterDetail.loadImage(IMAGE_BASE_URL+movie.posterPath)
+            if (data != null) {
+                tvTitleDetail.text = data.title
+                tvReleasedDetail.text = data.releaseDate
+                imgDetail.loadImage(IMAGE_BASE_URL + data.backdropPath)
+                imgPosterDetail.loadImage(IMAGE_BASE_URL + data.posterPath)
 
-                tvRatingDetail.text = movie.voteAverage.toString()
-                val dataGenres = movie.genres
+                tvRatingDetail.text = data.voteAverage.toString()
+                val dataGenres = data.genres
                 val genres = arrayListOf<String>()
-                for (item in dataGenres) {
-                    val genre = item.name
-                    if (genre != null) {
+                if (dataGenres != null) {
+                    for (item in dataGenres) {
+                        val genre = item.name
                         genres.add(genre)
                     }
                 }
                 val convGenres = genres.joinToString()
                 tvGenreDetail.text = convGenres
 
-                val duration = movie.runtime
+                val duration = data.runtime
                 val hour = duration?.div(60)
                 val minute = duration?.rem(60)
                 val durationFormatted = if (hour == 0) {
@@ -86,54 +81,24 @@ class DetailActivity : AppCompatActivity() {
                     hour.toString() + "h " + minute.toString() + "m"
                 }
                 tvDurationDetail.text = durationFormatted
-                tvDescDetail.text = movie.overview
-            } else if (tvShow != null && movie == null) {
-                tvTitleDetail.text = tvShow.name
-                tvReleasedDetail.text = tvShow.firstAirDate
-                imgDetail.loadImage(IMAGE_BASE_URL+tvShow.backdropPath)
-                imgPosterDetail.loadImage(IMAGE_BASE_URL+tvShow.posterPath)
-
-                tvRatingDetail.text = tvShow.voteAverage.toString()
-                val dataGenres = tvShow.genres
-                val genres = arrayListOf<String>()
-                for (item in dataGenres) {
-                    val genre = item.name
-                    if (genre != null) {
-                        genres.add(genre)
-                    }
-                }
-                val convGenres = genres.joinToString()
-                tvGenreDetail.text = convGenres
-
-                val duration = tvShow.episodeRunTime[0]
-                val hour = duration.div(60)
-                val minute = duration.rem(60)
-                val durationFormatted = if (hour == 0) {
-                    minute.toString() + "m"
-                } else {
-                    hour.toString() + "h " + minute.toString() + "m"
-                }
-                tvDurationDetail.text = durationFormatted
-                tvDescDetail.text = tvShow.overview
+                tvDescDetail.text = data.overview
             } else {
-                Toast.makeText(applicationContext, "Something wrong with API.", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "Something wrong try later.", Toast.LENGTH_SHORT)
                     .show()
+                finish()
             }
 
         }
     }
 
-    private fun ImageView.loadImage(url: String?) {
-        Glide.with(this.context)
-            .load(url)
-            .apply(RequestOptions().override(500, 500))
-            .centerCrop()
-            .into(this)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {

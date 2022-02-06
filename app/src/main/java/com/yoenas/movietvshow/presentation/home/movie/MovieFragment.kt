@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.yoenas.movietvshow.data.model.MoviesItem
+import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.databinding.FragmentMovieBinding
 import com.yoenas.movietvshow.presentation.detail.DetailActivity
 import com.yoenas.movietvshow.presentation.home.HomeViewModel
@@ -40,8 +40,7 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.getListMovie()
-        homeViewModel.movies.observe(viewLifecycleOwner, {
+        homeViewModel.getListMovie().observe(viewLifecycleOwner, {
             movieAdapter.setData(it)
             Log.i("GetListMovies", "onViewCreated: $it")
             binding.rvMovies.apply {
@@ -50,11 +49,16 @@ class MovieFragment : Fragment() {
             }
         })
 
-        movieAdapter.listener = { _: View, item: MoviesItem, _: Int ->
+        movieAdapter.listener = { _: View, item: MovieTvShow, _: Int ->
             val intent = Intent(activity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, item.id)
             intent.putExtra(DetailActivity.EXTRA_TYPE, DetailActivity.TYPE_MOVIE)
             startActivity(intent)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

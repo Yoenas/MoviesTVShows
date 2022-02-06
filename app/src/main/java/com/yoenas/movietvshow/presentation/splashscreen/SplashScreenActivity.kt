@@ -12,8 +12,11 @@ import com.example.awesomedialog.title
 import com.yoenas.movietvshow.R
 import com.yoenas.movietvshow.presentation.home.MainActivity
 import com.yoenas.movietvshow.utils.NetworkHelper
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
@@ -50,7 +53,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 val intent = Intent(Settings.ACTION_NETWORK_OPERATOR_SETTINGS)
                 startActivity(intent)
             }
-
     }
 
     override fun onRestart() {

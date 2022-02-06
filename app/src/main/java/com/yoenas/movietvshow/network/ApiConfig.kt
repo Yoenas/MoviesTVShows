@@ -1,4 +1,4 @@
-package com.yoenas.movietvshow.data.network
+package com.yoenas.movietvshow.network
 
 import com.yoenas.movietvshow.BuildConfig
 import okhttp3.Interceptor
