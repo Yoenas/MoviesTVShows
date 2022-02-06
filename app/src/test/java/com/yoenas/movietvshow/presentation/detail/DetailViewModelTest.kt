@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import com.yoenas.movietvshow.data.local.DataDummy
+import com.yoenas.movietvshow.utils.DataDummy
 import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi

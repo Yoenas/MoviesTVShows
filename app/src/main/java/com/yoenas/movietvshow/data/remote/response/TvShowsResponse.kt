@@ -1,25 +1,25 @@
-package com.yoenas.movietvshow.data.model
+package com.yoenas.movietvshow.data.remote.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MoviesItem(
+data class TvShowsItem(
     @field:SerializedName("id")
     val id: Int,
 
-    @field:SerializedName("title")
-    val title: String,
+    @field:SerializedName("name")
+    val name: String,
 
-    @field:SerializedName("release_date")
-    val releaseDate: String,
+    @field:SerializedName("first_air_date")
+    val firstAirDate: String,
 
     @field:SerializedName("genres")
     val genres: List<GenresItem>,
 
-    @field:SerializedName("runtime")
-    val runtime: Int,
+    @field:SerializedName("episode_run_time")
+    val episodeRunTime: List<Int?>,
 
     @field:SerializedName("vote_average")
     val voteAverage: Double,
@@ -32,10 +32,4 @@ data class MoviesItem(
 
     @field:SerializedName("backdrop_path")
     val backdropPath: String
-) : Parcelable
-
-@Parcelize
-data class GenresItem(
-    @field:SerializedName("name")
-    val name: String
 ) : Parcelable

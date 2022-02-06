@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
 import com.yoenas.movietvshow.LiveDataTestUtil
-import com.yoenas.movietvshow.data.local.DataDummy
+import com.yoenas.movietvshow.utils.DataDummy
 import com.yoenas.movietvshow.data.remote.RemoteDataSource
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull

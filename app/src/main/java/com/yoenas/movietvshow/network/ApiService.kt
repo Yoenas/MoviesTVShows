@@ -1,9 +1,9 @@
 package com.yoenas.movietvshow.network
 
 import com.yoenas.movietvshow.BuildConfig.API_KEY
-import com.yoenas.movietvshow.data.model.MoviesItem
 import com.yoenas.movietvshow.data.model.MyResponse
-import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.data.remote.response.MoviesItem
+import com.yoenas.movietvshow.data.remote.response.TvShowsItem
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,7 +1,7 @@
 package com.yoenas.movietvshow.data.remote
 
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.data.remote.response.MoviesItem
+import com.yoenas.movietvshow.data.remote.response.TvShowsItem
 import com.yoenas.movietvshow.network.ApiConfig
 import com.yoenas.movietvshow.utils.EspressoIdlingResource
 import retrofit2.await

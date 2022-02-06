@@ -10,7 +10,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.yoenas.movietvshow.R
-import com.yoenas.movietvshow.data.local.DataDummy
+import com.yoenas.movietvshow.utils.DataDummy
 import com.yoenas.movietvshow.presentation.home.MainActivity
 import com.yoenas.movietvshow.utils.EspressoIdlingResource
 import org.junit.After

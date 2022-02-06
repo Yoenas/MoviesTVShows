@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.yoenas.movietvshow.BuildConfig.IMAGE_BASE_URL
 import com.yoenas.movietvshow.data.model.MovieTvShow
 import com.yoenas.movietvshow.databinding.ActivityDetailBinding
-import com.yoenas.movietvshow.utils.loadImage
+import com.yoenas.movietvshow.utils.ExtFunction.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

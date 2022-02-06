@@ -1,6 +1,7 @@
 package com.yoenas.movietvshow.data.model
 
 import android.os.Parcelable
+import com.yoenas.movietvshow.data.remote.response.GenresItem
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

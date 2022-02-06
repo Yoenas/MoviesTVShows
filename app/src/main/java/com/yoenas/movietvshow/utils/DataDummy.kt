@@ -1,9 +1,9 @@
-package com.yoenas.movietvshow.data.local
+package com.yoenas.movietvshow.utils
 
-import com.yoenas.movietvshow.data.model.GenresItem
 import com.yoenas.movietvshow.data.model.MovieTvShow
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
+import com.yoenas.movietvshow.data.remote.response.GenresItem
+import com.yoenas.movietvshow.data.remote.response.MoviesItem
+import com.yoenas.movietvshow.data.remote.response.TvShowsItem
 
 object DataDummy {
     fun generateDataMoviesDummy(): List<MovieTvShow> {

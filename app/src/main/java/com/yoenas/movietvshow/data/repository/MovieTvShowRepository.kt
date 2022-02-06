@@ -3,9 +3,9 @@ package com.yoenas.movietvshow.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.yoenas.movietvshow.data.model.MovieTvShow
-import com.yoenas.movietvshow.data.model.MoviesItem
-import com.yoenas.movietvshow.data.model.TvShowsItem
 import com.yoenas.movietvshow.data.remote.RemoteDataSource
+import com.yoenas.movietvshow.data.remote.response.MoviesItem
+import com.yoenas.movietvshow.data.remote.response.TvShowsItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -104,12 +104,18 @@ class MovieTvShowRepository @Inject constructor(private val remoteDataSource: Re
                 id,
                 object : RemoteDataSource.LoadDetailTvShowCallback {
                     override fun onDetailTvShowReceived(tvShowItem: TvShowsItem) {
+                        val listRuntime = tvShowItem.episodeRunTime
+                        val runtime : Int? = if (listRuntime.isEmpty()){
+                            null
+                        } else {
+                            tvShowItem.episodeRunTime[0]
+                        }
                         val movie = MovieTvShow(
                             tvShowItem.id,
                             tvShowItem.name,
                             tvShowItem.firstAirDate,
                             tvShowItem.genres,
-                            tvShowItem.episodeRunTime[0],
+                            runtime,
                             tvShowItem.voteAverage,
                             tvShowItem.overview,
                             tvShowItem.posterPath,
