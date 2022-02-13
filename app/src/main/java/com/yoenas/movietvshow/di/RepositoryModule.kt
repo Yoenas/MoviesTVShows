@@ -1,8 +1,11 @@
 package com.yoenas.movietvshow.di
 
+import com.yoenas.movietvshow.data.local.LocalDataSource
+import com.yoenas.movietvshow.data.local.room.MovieTvDao
 import com.yoenas.movietvshow.data.remote.RemoteDataSource
-import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
+import com.yoenas.movietvshow.data.MovieTvShowRepository
 import com.yoenas.movietvshow.network.ApiConfig
+import com.yoenas.movietvshow.utils.AppExecutors
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,11 +18,19 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(apiConfig: ApiConfig) = RemoteDataSource(apiConfig)
+    fun provideRemoteDataSource(apiConfig: ApiConfig) = RemoteDataSource(apiConfig)
 
     @Provides
     @Singleton
-    fun provideRepository(dataSource: RemoteDataSource): MovieTvShowRepository =
-        MovieTvShowRepository(dataSource)
+    fun provideLocalDataSource(dao: MovieTvDao) = LocalDataSource(dao)
+
+    @Provides
+    @Singleton
+    fun provideRepository(
+        remoteDataSource: RemoteDataSource,
+        localDataSource: LocalDataSource,
+        appExecutors: AppExecutors
+    ): MovieTvShowRepository =
+        MovieTvShowRepository(remoteDataSource, localDataSource, appExecutors)
 
 }

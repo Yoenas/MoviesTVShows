@@ -5,11 +5,16 @@
     <string name="txt_rating">Rating</string>
     <string name="txt_overview">Overview</string>
     <string name="txt_detail">Detail</string>
-    <string name="txt_no_internet">No Internet Connection…</string>
-    <string name="txt_go_to_setting">Go To Settting</string>
+    <string name="txt_no_internet">No Internet Connection \nor \nIf you using hotspot, please check your login session Hotspot…</string>
+    <string name="txt_go_to_setting">Go To Setting</string>
+    <string name="txt_my_favorite_films">My Favorite Films</string>
+    <string name="txt_guide_to_delete_movie_fav">Swipe TO RIGHT on an item to remove favorite.</string>
+    <string name="txt_guide_to_delete_tvshow_fav">Swipe TO LEFT on an item to remove favorite</string>
 
     <string name="content_image_poster_film">Image Poster Film</string>
     <string name="content_image_detail_banner">Image Detail Banner</string>
     <string name="content_image_detail_poster">Image Detail Poster</string>
     <string name="content_image_splash_screen">Image Splash Screen</string>
+    <string name="content_image_favorite_poster">Image Favorite Poster</string>
+    <string name="content_fab_insert_delete_favorite">Insert Delete Favorite</string>
 </resources>

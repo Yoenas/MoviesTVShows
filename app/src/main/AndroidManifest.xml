@@ -7,14 +7,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".ApplicationModule"
         android:allowBackup="true"
         android:icon="@mipmap/logo_movie_tv_show"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_movie_tv_show_round"
         android:supportsRtl="true"
-        android:name=".ApplicationModule"
         android:theme="@style/Theme.MovieTVShow"
         tools:ignore="AllowBackup">
+        <activity
+            android:name=".presentation.favorite.FavoriteActivity"
+            android:exported="true"
+            android:theme="@style/LightStatusBar" />
         <activity
             android:name=".presentation.splashscreen.SplashScreenActivity"
             android:exported="true"
@@ -32,9 +36,7 @@
         <activity
             android:name=".presentation.home.MainActivity"
             android:exported="true"
-            android:theme="@style/LightStatusBar">
-
-        </activity>
+            android:theme="@style/LightStatusBar" />
     </application>
 
 </manifest>

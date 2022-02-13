@@ -1,10 +1,12 @@
 package com.yoenas.movietvshow.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yoenas.movietvshow.R
 import com.yoenas.movietvshow.databinding.ActivityMainBinding
+import com.yoenas.movietvshow.presentation.favorite.FavoriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             TabLayoutMediator(tabs, vpMain) { tabs, position ->
                 tabs.text = tabList[position]
             }.attach()
+
+            btnNavFavorite.setOnClickListener {
+                startActivity(Intent(this@MainActivity, FavoriteActivity::class.java))
+            }
         }
     }
 }

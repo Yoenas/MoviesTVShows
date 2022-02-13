@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class MoviesItem(
     @field:SerializedName("id")
     val id: Int,
@@ -32,7 +31,19 @@ data class MoviesItem(
 
     @field:SerializedName("backdrop_path")
     val backdropPath: String
-) : Parcelable
+) {
+    constructor() : this(
+        0,
+        "",
+        "",
+        listOf(),
+        0,
+        0.0,
+        "",
+        "",
+        ""
+    )
+}
 
 @Parcelize
 data class GenresItem(

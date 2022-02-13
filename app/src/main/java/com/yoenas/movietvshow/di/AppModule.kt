@@ -2,6 +2,7 @@ package com.yoenas.movietvshow.di
 
 import android.content.Context
 import com.yoenas.movietvshow.ApplicationModule
+import com.yoenas.movietvshow.utils.AppExecutors
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +20,6 @@ object AppModule {
         return app as ApplicationModule
     }
 
+    @Provides
+    fun provideAppExecutors() = AppExecutors()
 }

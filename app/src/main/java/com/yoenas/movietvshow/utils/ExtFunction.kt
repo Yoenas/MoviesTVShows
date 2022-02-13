@@ -4,13 +4,18 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-object ExtFunction {
+fun ImageView.loadImage(url: String?) {
+    Glide.with(this.context)
+        .load(url)
+        .apply(RequestOptions().override(500, 500))
+        .centerCrop()
+        .into(this)
+}
 
-    fun ImageView.loadImage(url: String?) {
-        Glide.with(this.context)
-            .load(url)
-            .apply(RequestOptions().override(500, 500))
-            .centerCrop()
-            .into(this)
-    }
+fun ImageView.loadImage(source: Int?) {
+    Glide.with(this.context)
+        .load(source)
+        .apply(RequestOptions().override(500, 500))
+        .centerCrop()
+        .into(this)
 }

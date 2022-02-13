@@ -3,12 +3,12 @@ package com.yoenas.movietvshow.presentation.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.nhaarman.mockitokotlin2.verify
-import com.yoenas.movietvshow.utils.DataDummy
 import com.yoenas.movietvshow.data.model.MovieTvShow
-import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
+import com.yoenas.movietvshow.data.MovieTvShowRepository
+import com.yoenas.movietvshow.vo.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -19,7 +19,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
-@ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest {
 
@@ -32,26 +31,29 @@ class HomeViewModelTest {
     private lateinit var movieTvShowRepository: MovieTvShowRepository
 
     @Mock
-    private lateinit var observerMovies: Observer<List<MovieTvShow>>
+    private lateinit var observerMovies: Observer<Resource<PagedList<MovieTvShow>>>
 
     @Mock
-    private lateinit var observerTvShows: Observer<List<MovieTvShow>>
+    private lateinit var observerTvShows: Observer<Resource<PagedList<MovieTvShow>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<MovieTvShow>
 
     @Before
     fun setup() {
         viewModel = HomeViewModel(movieTvShowRepository)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun testGetListMovie() = runBlocking {
-        val dummyMovie = DataDummy.generateDataMoviesDummy()
-        val movies = MutableLiveData<List<MovieTvShow>>()
+    fun testGetListMovie() {
+        val dummyMovie = Resource.success(pagedList)
+        `when`(dummyMovie.data?.size).thenReturn(20)
+        val movies = MutableLiveData<Resource<PagedList<MovieTvShow>>>()
         movies.value = dummyMovie
 
         `when`(movieTvShowRepository.getNowPlayingMovies()).thenReturn(movies)
 
-        val data = viewModel.getListMovie().value
+        val data = viewModel.getListMovie().value?.data
         verify(movieTvShowRepository).getNowPlayingMovies()
 
         assertNotNull(data)
@@ -65,14 +67,15 @@ class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun testGetListTvShow() = runBlocking {
-        val dummyTvShow = DataDummy.generateDataTvShowsDummy()
-        val tvShows = MutableLiveData<List<MovieTvShow>>()
+    fun testGetListTvShow() {
+        val dummyTvShow = Resource.success(pagedList)
+        `when`(dummyTvShow.data?.size).thenReturn(20)
+        val tvShows = MutableLiveData<Resource<PagedList<MovieTvShow>>>()
         tvShows.value = dummyTvShow
 
         `when`(movieTvShowRepository.getTopRatedTvShows()).thenReturn(tvShows)
 
-        val data = viewModel.getListTvShow().value
+        val data = viewModel.getListTvShow().value?.data
         verify(movieTvShowRepository).getTopRatedTvShows()
 
         assertNotNull(data)

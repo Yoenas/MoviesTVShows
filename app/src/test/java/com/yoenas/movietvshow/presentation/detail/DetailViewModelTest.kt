@@ -4,11 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import com.yoenas.movietvshow.utils.DataDummy
 import com.yoenas.movietvshow.data.model.MovieTvShow
-import com.yoenas.movietvshow.data.repository.MovieTvShowRepository
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import com.yoenas.movietvshow.data.MovieTvShowRepository
+import com.yoenas.movietvshow.utils.DataDummy
+import com.yoenas.movietvshow.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -19,7 +18,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
-@ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest {
 
@@ -28,75 +26,77 @@ class DetailViewModelTest {
 
     private lateinit var viewModel: DetailViewModel
 
+    private val dummyMovie = DataDummy.generateDataMoviesDummy()[0]
+    private val movieId = dummyMovie.movieTvId!!
+    private val dummyTvShow = DataDummy.generateDataTvShowsDummy()[0]
+    private val tvShowId = dummyTvShow.movieTvId!!
+
     @Mock
     private lateinit var movieTvShowRepository: MovieTvShowRepository
 
     @Mock
-    private lateinit var observerMovie: Observer<MovieTvShow>
+    private lateinit var observerMovie: Observer<Resource<MovieTvShow>>
 
     @Mock
-    private lateinit var observerTvShow: Observer<MovieTvShow>
+    private lateinit var observerTvShow: Observer<Resource<MovieTvShow>>
 
 
     @Before
     fun setup() {
         viewModel = DetailViewModel(movieTvShowRepository)
+        viewModel.setSelectedMovie(movieId)
+        viewModel.setSelectedTvShow(tvShowId)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun getDetailMovieById() = runBlockingTest {
-        val dummyMovie = DataDummy.generateDataMoviesDummy()[0]
-        val movieId = dummyMovie.id
-
-        val movie = MutableLiveData<MovieTvShow>()
-        movie.value = dummyMovie
+    fun getDetailMovieById() {
+        val dataMovie = Resource.success(dummyMovie)
+        val movie = MutableLiveData<Resource<MovieTvShow>>()
+        movie.value = dataMovie
 
         `when`(movieTvShowRepository.getDetailMovie(movieId)).thenReturn(movie)
 
-        val data = viewModel.getDetailMovie(movieId).value as MovieTvShow
+        val data = viewModel.getDetailMovie(movieId).value?.data as MovieTvShow
         assertNotNull(data)
 
         assertEquals(dummyMovie.id, data.id)
+        assertEquals(dummyMovie.movieTvId, data.movieTvId)
         assertEquals(dummyMovie.title, data.title)
         assertEquals(dummyMovie.releaseDate, data.releaseDate)
         assertEquals(dummyMovie.genres, data.genres)
         assertEquals(dummyMovie.runtime, data.runtime)
-        assertEquals(dummyMovie.voteAverage, data.voteAverage, 0.0)
+        dummyMovie.voteAverage?.let { data.voteAverage?.let { it1 -> assertEquals(it, it1, 0.0) } }
         assertEquals(dummyMovie.overview, data.overview)
         assertEquals(dummyMovie.posterPath, data.posterPath)
         assertEquals(dummyMovie.backdropPath, data.backdropPath)
 
-        viewModel.getDetailMovie(movieId).observeForever(observerMovie)
-        verify(observerMovie).onChanged(dummyMovie)
+        viewModel.movieDetail.observeForever(observerMovie)
+        verify(observerMovie).onChanged(dataMovie)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun getDetailTvShowById() = runBlockingTest {
-        val dummyTvShow = DataDummy.generateDataTvShowsDummy()[0]
-        val tvShowId = dummyTvShow.id
-
-        val movie = MutableLiveData<MovieTvShow>()
-        movie.value = dummyTvShow
+    fun getDetailTvShowById() {
+        val dataTvShow = Resource.success(dummyTvShow)
+        val movie = MutableLiveData<Resource<MovieTvShow>>()
+        movie.value = dataTvShow
 
         `when`(movieTvShowRepository.getDetailTvShow(tvShowId)).thenReturn(movie)
 
-        val data = viewModel.getDetailTvShow(tvShowId).value as MovieTvShow
+        val data = viewModel.getDetailTvShow(tvShowId).value?.data as MovieTvShow
         assertNotNull(data)
 
         assertEquals(dummyTvShow.id, data.id)
+        assertEquals(dummyTvShow.movieTvId, data.movieTvId)
         assertEquals(dummyTvShow.title, data.title)
         assertEquals(dummyTvShow.releaseDate, data.releaseDate)
         assertEquals(dummyTvShow.genres, data.genres)
         assertEquals(dummyTvShow.runtime, data.runtime)
-        assertEquals(dummyTvShow.voteAverage, data.voteAverage, 0.0)
+        data.voteAverage?.let { dummyTvShow.voteAverage?.let { it1 -> assertEquals(it1, it, 0.0) } }
         assertEquals(dummyTvShow.overview, data.overview)
         assertEquals(dummyTvShow.posterPath, data.posterPath)
         assertEquals(dummyTvShow.backdropPath, data.backdropPath)
 
-        viewModel.getDetailTvShow(tvShowId).observeForever(observerTvShow)
-        verify(observerTvShow).onChanged(dummyTvShow)
-
+        viewModel.tvShowDetail.observeForever(observerTvShow)
+        verify(observerTvShow).onChanged(dataTvShow)
     }
 }

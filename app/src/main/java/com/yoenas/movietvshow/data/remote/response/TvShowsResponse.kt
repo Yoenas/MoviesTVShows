@@ -32,4 +32,16 @@ data class TvShowsItem(
 
     @field:SerializedName("backdrop_path")
     val backdropPath: String
-) : Parcelable
+) : Parcelable {
+    constructor() : this(
+        0,
+        "",
+        "",
+        listOf(),
+        listOf(),
+        0.0,
+        "",
+        "",
+        ""
+    )
+}
